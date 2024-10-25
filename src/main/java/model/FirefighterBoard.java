@@ -10,6 +10,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   private final int rowCount;
   private final int initialFireCount;
   private final int initialFirefighterCount;
+  private final TargetStrategy targetStrategy = new TargetStrategy(this);
   private List<Position> firefighterPositions;
   private Set<Position> firePositions;
   private int step = 0;
@@ -87,7 +88,8 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
     List<Position> modifiedPosition = new ArrayList<>();
     List<Position> firefighterNewPositions = new ArrayList<>();
     for (Position firefighterPosition : firefighterPositions) {
-      Position newFirefighterPosition = neighborClosestToFire(firefighterPosition);
+      Position newFirefighterPosition =
+              targetStrategy.neighborClosestToFire(firefighterPosition, firePositions);
       firefighterNewPositions.add(newFirefighterPosition);
       extinguish(newFirefighterPosition);
       modifiedPosition.add(firefighterPosition);
@@ -112,33 +114,13 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
     firePositions.remove(position);
   }
 
-  private List<Position> neighbors(Position position) {
+  public List<Position> neighbors(Position position) {
     List<Position> list = new ArrayList<>();
     if (position.row() > 0) list.add(new Position(position.row() - 1, position.column()));
     if (position.column() > 0) list.add(new Position(position.row(), position.column() - 1));
     if (position.row() < rowCount - 1) list.add(new Position(position.row() + 1, position.column()));
     if (position.column() < columnCount - 1) list.add(new Position(position.row(), position.column() + 1));
     return list;
-  }
-
-  private Position neighborClosestToFire(Position position) {
-    Set<Position> seen = new HashSet<>();
-    HashMap<Position, Position> firstMove = new HashMap<>();
-    Queue<Position> toVisit = new LinkedList<>(neighbors(position));
-    for (Position initialMove : toVisit)
-      firstMove.put(initialMove, initialMove);
-    while (!toVisit.isEmpty()) {
-      Position current = toVisit.poll();
-      if (firePositions.contains(current))
-        return firstMove.get(current);
-      for (Position adjacent : neighbors(current)) {
-        if (seen.contains(adjacent)) continue;
-        toVisit.add(adjacent);
-        seen.add(adjacent);
-        firstMove.put(adjacent, firstMove.get(current));
-      }
-    }
-    return position;
   }
 
   @Override
@@ -154,4 +136,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
       }
     }
   }
+
+  public List<Position> getFirePositions() {
+return firefighterPositions;  }
 }
