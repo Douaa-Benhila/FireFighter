@@ -26,7 +26,7 @@ public class SimulatorApplication extends javafx.application.Application {
     this.primaryStage = primaryStage;
     this.primaryStage.setTitle(APP_NAME);
     this.primaryStage.setOnCloseRequest(event -> Platform.exit());
-    this.primaryStage.setResizable(false);
+    this.primaryStage.setResizable(true);
     this.primaryStage.sizeToScene();
   }
 
