@@ -53,7 +53,7 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
   }
 
   @Override
-  public BoardElement getState(Position position) {
+  public List<BoardElement> getState(Position position) {
     List<ModelElement> result = new ArrayList<>();
     for (Position firefighterPosition : firefighterPositions)
       if (firefighterPosition.equals(position))
@@ -132,7 +132,7 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
 
 
   @Override
-  public void setState(BoardElement state, Position position) {
+  public void setState(List<BoardElement> state, Position position) {
     firePositions.remove(position);
     for (; ; ) {
       if (!firefighterPositions.remove(position)) break;
