@@ -5,7 +5,7 @@ import util.Position;
 import java.util.*;
 
 
-public class FirefighterBoard implements Board<List<ModelElement>> {
+public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisation,BoardDimesions {
   private final int columnCount;
   private final int rowCount;
   private final int initialFireCount;
@@ -53,7 +53,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
   }
 
   @Override
-  public List<ModelElement> getState(Position position) {
+  public BoardElement getState(Position position) {
     List<ModelElement> result = new ArrayList<>();
     for (Position firefighterPosition : firefighterPositions)
       if (firefighterPosition.equals(position))
@@ -132,7 +132,7 @@ public class FirefighterBoard implements Board<List<ModelElement>> {
 
 
   @Override
-  public void setState(List<ModelElement> state, Position position) {
+  public void setState(BoardElement state, Position position) {
     firePositions.remove(position);
     for (; ; ) {
       if (!firefighterPositions.remove(position)) break;
