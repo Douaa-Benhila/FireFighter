@@ -7,7 +7,6 @@ import java.util.List;
 public class Firefighter implements BoardElement, PositionControl{
     private List<Position> positions;
     private Update update;
-    private model.TargetStrategy targetStrategy;
 
     public Firefighter(List<Position> positions, Update update) {}
 
