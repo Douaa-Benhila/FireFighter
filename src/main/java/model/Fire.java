@@ -10,8 +10,11 @@ public class Fire implements BoardElement ,PositionControl {
     private Update update;
     private FirefighterBoard  firefighterBoard;
 
-    public Fire(List<Position> positions, Update update , FirefighterBoard firefighterBoard) {
-        this.positions = positions;
+    public Fire(int initialFireCount, Update update , FirefighterBoard firefighterBoard) {
+        positions = new ArrayList<>();
+        for (int index = 0; index < initialFireCount; index++)
+            positions.add(positions.get(index).randomPosition());
+
         this.update = update;
         this.firefighterBoard = firefighterBoard;
     }
