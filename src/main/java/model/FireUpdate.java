@@ -10,7 +10,7 @@ public class FireUpdate implements Update{
     public void influence(BoardElement element){
         List<Position> newFirePositions = new ArrayList<>();
         for (Position fire : element.getPosition()){
-            newFirePositions.addAll(fire.getNeighbors(fire));
+            newFirePositions.addAll(fire.getNeighbors().get(fire));
         }
         element.getPosition().addAll(newFirePositions);
     }
