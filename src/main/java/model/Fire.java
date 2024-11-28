@@ -26,11 +26,7 @@ public class Fire implements BoardElement ,PositionControl {
     @Override
     public void update() {
         if (firefighterBoard.getStep() % 2 == 0) {
-            List<Position> newFirePositions = new ArrayList<>();
-            for (Position fire : positions) {
-                newFirePositions.addAll(fire.getNeighbors(fire));
-            }
-            positions.addAll(newFirePositions);
+            update.influence(this);
 
         }
 
