@@ -7,7 +7,7 @@ public class FireFactory implements BoardElementFactory{
     private Update update;
     private FirefighterBoard firefighterBoard;
 
-    public FireFactory(int initialNumber, Update update ){
+    public FireFactory(int initialNumber, Update update, FirefighterBoard firefighterBoard ){
         this.initialNumber=initialNumber;
         this.update=update;
         this.firefighterBoard=firefighterBoard;
