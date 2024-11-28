@@ -5,16 +5,17 @@ import java.util.List;
 public class FireFactory implements BoardElementFactory{
     private int initialNumber;
     private Update update;
+    private FirefighterBoard firefighterBoard;
 
     public FireFactory(int initialNumber, Update update ){
         this.initialNumber=initialNumber;
         this.update=update;
+        this.firefighterBoard=firefighterBoard;
     }
 
     @Override
-    public int getInitialNumber() {return 0;}
-
+    public int getInitialNumber() {return initialNumber;}
     @Override
-    public List<BoardElement> createElements(int rowCount, int columnCount) {return null;}
+    public BoardElement createElements(int rowCount, int columnCount) {return new Fire(initialNumber,update,firefighterBoard);}
 }
 
