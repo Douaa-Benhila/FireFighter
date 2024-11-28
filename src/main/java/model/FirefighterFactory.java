@@ -6,15 +6,18 @@ public class FirefighterFactory implements BoardElementFactory{
     private int initialNumber;
     private Update update;
 
-    public FirefighterFactory(int initialNumber, Update update) {}
-
-    @Override
-    public int getInitialNumber() {
-        return 0;
+    public FirefighterFactory(int initialNumber, Update update) {
+        this.initialNumber = initialNumber;
+        this.update = update;
     }
 
     @Override
-    public List<BoardElement> createElements(int rowCount, int columnCount) {
-        return null;
+    public int getInitialNumber() {
+        return initialNumber;
+    }
+
+    @Override
+    public BoardElement createElements(int rowCount, int columnCount) {
+        return new Firefighter(update, initialNumber);
     }
 }
