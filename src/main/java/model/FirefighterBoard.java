@@ -63,6 +63,8 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
     return result;
   }
 
+  public int getStep(){return this.step;}
+
   @Override
   public int rowCount() {
     return rowCount;
