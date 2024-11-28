@@ -33,7 +33,7 @@ public class Position {
             }
     }
 
-    private Position randomPosition() {
+    public Position randomPosition() {
         return new Position(randomGenerator.nextInt(rowCount), randomGenerator.nextInt(columnCount));
     }
 
