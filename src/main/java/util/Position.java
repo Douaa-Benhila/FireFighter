@@ -37,6 +37,6 @@ public class Position {
         return new Position(randomGenerator.nextInt(rowCount), randomGenerator.nextInt(columnCount));
     }
 
-    public List<Position> getNeighbors(Position position) {return neighbors.get(position);}
+    public Map<Position, List<Position>> getNeighbors() {return neighbors;}
 
 }

@@ -8,6 +8,7 @@ import java.util.List;
 public class Firefighter implements BoardElement, PositionControl{
     private List<Position> positions;
     private Update update;
+    private final model.TargetStrategy targetStrategy = new model.TargetStrategy();
 
     public Firefighter(Update update, int initialFirefighterCount) {
         positions = new ArrayList<>();
@@ -24,7 +25,22 @@ public class Firefighter implements BoardElement, PositionControl{
 
     @Override
     public void update() {
+        for (Position firefighterPosition : positions) {
+            Position newFirefighterPosition =
+                    targetStrategy.neighborClosestToFire(firefighterPosition,
+                            positions, firefighterPosition.getNeighbors());
+            extinguish(newFirefighterPosition);
+            positions.add(newFirefighterPosition);
+            List<Position> neighborFirePositions = newFirefighterPosition.getNeighbors().get(newFirefighterPosition).stream()
+                    .filter(positions::contains).toList();
+            for (Position firePosition : neighborFirePositions)
+                extinguish(firePosition);
+            positions.addAll(neighborFirePositions);
+        }
+    }
 
+    private void extinguish(Position position) {
+        positions.remove(position);
     }
 
     public Update getUpdate() {return update;}

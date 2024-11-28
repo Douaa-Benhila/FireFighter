@@ -25,7 +25,7 @@ public class Fire implements BoardElement ,PositionControl {
         if (firefighterBoard.getStep() % 2 == 0) {
             List<Position> newFirePositions = new ArrayList<>();
             for (Position fire : positions) {
-                newFirePositions.addAll(fire.getNeighbors(fire));
+                newFirePositions.addAll(fire.getNeighbors().get(fire));
             }
             positions.addAll(newFirePositions);
 
