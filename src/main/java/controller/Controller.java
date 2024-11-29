@@ -64,6 +64,7 @@ public class Controller {
       ViewElement viewElement = getViewElement(squareState);
       updatedSquares.add(new Pair<>(updatedPosition, viewElement));
     }
+    repaintGrid();
     grid.repaint(updatedSquares);
     updateGenerationLabel(board.stepNumber());
   }

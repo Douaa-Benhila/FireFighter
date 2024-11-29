@@ -66,11 +66,16 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
   @Override
   public List<util.Position> updateToNextGeneration() {
     List<util.Position> result = new ArrayList<>();
+    elements.stream()
+            .filter(element -> element instanceof Firefighter)
+            .forEach(BoardElement::update);
+
+    elements.stream()
+            .filter(element -> element instanceof Fire)
+            .forEach(BoardElement::update);
+
     for (BoardElement element:elements){
-      element.update();
-      for(util.Position p:element.getPosition()){
-        result.add(p);
-      }
+      result.addAll(element.getPosition());
 
     }
     step++;

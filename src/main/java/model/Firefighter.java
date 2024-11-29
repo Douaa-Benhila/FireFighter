@@ -27,18 +27,19 @@ public class Firefighter implements BoardElement{
 
     @Override
     public void update() {
-        List<Position> currentPositions = new ArrayList<>(positions);
-        for (Position firefighterPosition : currentPositions) {
+        List<Position> firefighterNewPositions = new ArrayList<>();
+        for (Position firefighterPosition : positions) {
             Position newFirefighterPosition = targetStrategy.neighborClosestToFire(firefighterPosition,
                     Fire.getFirePositions(), firefighterBoard.getNeighbors());
+            firefighterNewPositions.add(newFirefighterPosition);
             extinguish(newFirefighterPosition);
-            positions.add(newFirefighterPosition);
             List<Position> neighborFirePositions = firefighterBoard.getNeighbors().get(newFirefighterPosition).stream()
                     .filter(Fire.getFirePositions()::contains).toList();
             for (Position firePosition : neighborFirePositions)
                 extinguish(firePosition);
-            positions.addAll(neighborFirePositions);
         }
+        positions.clear();
+        positions.addAll(firefighterNewPositions);
     }
 
     private void extinguish(Position position) {
