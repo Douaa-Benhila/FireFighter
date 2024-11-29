@@ -8,20 +8,17 @@ import java.util.*;
 public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisation,BoardDimesions {
   private final int columnCount;
   private final int rowCount;
-  private final int initialFireCount;
-  private final int initialFirefighterCount;
-  private final TargetStrategy targetStrategy = new TargetStrategy(); // there is an error
-  private List<Position> firefighterPositions;  // this is a push test
-  private Set<Position> firePositions;
+  private List<BoardElement> elements=new ArrayList<>();
+  private List<BoardElementFactory> elementFactories=new ArrayList<>();
+  private util.Position[][] positions;
   private Map<Position, List<Position>> neighbors = new HashMap();
-  private final Position[][] positions;
   private int step = 0;
   private final Random randomGenerator = new Random();
 
   public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount) {
     this.columnCount = columnCount;
     this.rowCount = rowCount;
-    this.positions = new Position[rowCount][columnCount];
+    this.positions = new util.Position[rowCount][columnCount];
     for (int column = 0; column < columnCount; column++)
       for (int row = 0; row < rowCount; row++)
         positions[row][column] = new Position(row, column);
@@ -34,33 +31,24 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
         if (column < columnCount - 1) list.add(positions[row][column + 1]);
         neighbors.put(positions[row][column], list);
       }
-    this.initialFireCount = initialFireCount;
-    this.initialFirefighterCount = initialFirefighterCount;
+    this.elements = new ArrayList<>();
+    this.elementFactories = new ArrayList<>();
+    elementFactories.add(new FireFactory(initialFireCount, new FireUpdate(this), this));
+    elementFactories.add(new FirefighterFactory(initialFirefighterCount, new FirefighterUpdate(), this));
+
     initializeElements();
   }
 
-  public void initializeElements() {
-    firefighterPositions = new ArrayList<>();
-    firePositions = new HashSet<>();
-    for (int index = 0; index < initialFireCount; index++)
-      firePositions.add(randomPosition());
-    for (int index = 0; index < initialFirefighterCount; index++)
-      firefighterPositions.add(randomPosition());
-  }
-
-  private Position randomPosition() {
-    return new Position(randomGenerator.nextInt(rowCount), randomGenerator.nextInt(columnCount));
-  }
 
   @Override
-  public List<BoardElement> getState(Position position) {
-    List<ModelElement> result = new ArrayList<>();
-    for (Position firefighterPosition : firefighterPositions)
-      if (firefighterPosition.equals(position))
-        result.add(ModelElement.FIREFIGHTER);
-    if (firePositions.contains(position))
-      result.add(ModelElement.FIRE);
-    return result;
+  public void initializeElements() {
+    for(BoardElementFactory factory : elementFactories){
+      this.elements.add(factory.createElements(this.rowCount, this.columnCount));
+    }
+  }
+
+  public Position randomPosition() {
+    return new Position(randomGenerator.nextInt(rowCount), randomGenerator.nextInt(columnCount));
   }
 
   public int getStep(){return this.step;}
@@ -75,25 +63,18 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
     return columnCount;
   }
 
-  public List<Position> updateToNextGeneration() {
-    List<Position> modifiedPositions = updateFirefighters();
-    modifiedPositions.addAll(updateFires());
-    step++;
-    return modifiedPositions;
-  }
-
-  private List<Position> updateFires() {
-    List<Position> modifiedPositions = new ArrayList<>();
-    if (step % 2 == 0) {
-      List<Position> newFirePositions = new ArrayList<>();
-      for (Position fire : firePositions) {
-        newFirePositions.addAll(neighbors.get(fire));
+  @Override
+  public List<util.Position> updateToNextGeneration() {
+    List<util.Position> result = new ArrayList<>();
+    for (BoardElement element:elements){
+      element.update();
+      for(util.Position p:element.getPosition()){
+        result.add(p);
       }
-      firePositions.addAll(newFirePositions);
-      modifiedPositions.addAll(newFirePositions);
-    }
-    return modifiedPositions;
 
+    }
+    step++;
+    return result;
   }
 
   @Override
@@ -101,49 +82,44 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
     return step;
   }
 
-  private List<Position> updateFirefighters() {
-    List<Position> modifiedPosition = new ArrayList<>();
-    List<Position> firefighterNewPositions = new ArrayList<>();
-    for (Position firefighterPosition : firefighterPositions) {
-      Position newFirefighterPosition =
-              targetStrategy.neighborClosestToFire(firefighterPosition,
-                      firePositions, neighbors);
-      firefighterNewPositions.add(newFirefighterPosition);
-      extinguish(newFirefighterPosition);
-      modifiedPosition.add(firefighterPosition);
-      modifiedPosition.add(newFirefighterPosition);
-      List<Position> neighborFirePositions = neighbors.get(newFirefighterPosition).stream()
-              .filter(firePositions::contains).toList();
-      for (Position firePosition : neighborFirePositions)
-        extinguish(firePosition);
-      modifiedPosition.addAll(neighborFirePositions);
-    }
-    firefighterPositions = firefighterNewPositions;
-    return modifiedPosition;
-  }
+  public Position[][] getPositions(){return positions;}
+
 
   @Override
   public void reset() {
     step = 0;
+    elements.clear();
     initializeElements();
   }
 
-  private void extinguish(Position position) {
-    firePositions.remove(position);
-  }
+  public Map<Position, List<Position>> getNeighbors(){return neighbors;}
 
 
   @Override
-  public void setState(List<BoardElement> state, Position position) {
-    firePositions.remove(position);
-    for (; ; ) {
-      if (!firefighterPositions.remove(position)) break;
-    }
-    for (ModelElement element : state) {
-      switch (element) {
-        case FIRE -> firePositions.add(position);
-        case FIREFIGHTER -> firefighterPositions.add(position);
+  public List<BoardElement> getState(util.Position position) {
+    List<BoardElement> result = new ArrayList<>();
+    for (BoardElement element : elements) {
+      for(util.Position p:element.getPosition()){
+        if (p.equals(position)) result.add(element);
       }
+
+    }
+    return result;
+  }
+
+  @Override
+  public void setState(List<BoardElement> state, Position position) {
+    for (BoardElement element : elements) {
+      element.getPosition().clear();
+      for(BoardElement s : state){
+        if (element.getClass().equals(s.getClass())){
+          element.getPosition().add(position);
+        }
+
+      }
+
     }
   }
+
+
 }

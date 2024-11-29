@@ -1,6 +1,6 @@
 package model;
 
-import util.Position;
+import supp.Position;
 
 public interface PositionControl {
     void deletePosition(Position position);

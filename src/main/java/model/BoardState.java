@@ -1,7 +1,5 @@
 package model;
 
-import util.Position;
-
 import java.util.List;
 
 public interface BoardState {
@@ -11,7 +9,7 @@ public interface BoardState {
      * @param position The position on the board for which to retrieve the state.
      * @return The state at the specified position.
      */
-    List<BoardElement> getState(Position position);
+    List<BoardElement> getState(util.Position position);
 
     /**
      * Set the state of a specific position on the board to the specified state.
@@ -19,7 +17,7 @@ public interface BoardState {
      * @param state The state to set for the given position.
      * @param position The position on the board for which to set the state.
      */
-    void setState(BoardElement state, Position position);
+    void setState(List<BoardElement> state, util.Position position);
 
 }
 // add comment for push purpose

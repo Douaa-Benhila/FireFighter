@@ -1,6 +1,6 @@
 package model;
 
 public interface BoardInitialisation {
-    void initializeElement();
+    void initializeElements();
     void reset();
 }

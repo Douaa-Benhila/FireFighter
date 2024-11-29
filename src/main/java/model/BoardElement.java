@@ -1,10 +1,9 @@
 package model;
 
-import util.Position;
 import java.util.*;
 
 public interface BoardElement {
-    List<Position> getPosition();
+    List<util.Position> getPosition();
     void update();
     Update getUpdate();
 }

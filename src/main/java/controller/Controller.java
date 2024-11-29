@@ -12,9 +12,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.util.Duration;
 import javafx.util.Pair;
-import model.Board;
-import model.ModelElement;
-import model.FirefighterBoard;
+import model.*;
 import util.Position;
 import view.Grid;
 import view.ViewElement;
@@ -40,7 +38,7 @@ public class Controller {
   @FXML
   private Grid<ViewElement> grid;
   private Timeline timeline;
-  private Board<List<ModelElement>> board;
+  private FirefighterBoard board;
 
   @FXML
   private void initialize() {
@@ -62,7 +60,7 @@ public class Controller {
     List<Position> updatedPositions = board.updateToNextGeneration();
     List<Pair<Position, ViewElement>> updatedSquares = new ArrayList<>();
     for(Position updatedPosition : updatedPositions){
-      List<ModelElement> squareState = board.getState(updatedPosition);
+      List<BoardElement> squareState = board.getState(updatedPosition);
       ViewElement viewElement = getViewElement(squareState);
       updatedSquares.add(new Pair<>(updatedPosition, viewElement));
     }
@@ -81,11 +79,11 @@ public class Controller {
     updateGenerationLabel(board.stepNumber());
   }
 
-  private ViewElement getViewElement(List<ModelElement> squareState) {
-    if(squareState.contains(ModelElement.FIREFIGHTER)){
+  private ViewElement getViewElement(List<BoardElement> squareState) {
+    if(squareState.stream().anyMatch(element -> element instanceof Firefighter)){
       return ViewElement.FIREFIGHTER;
     }
-    if (squareState.contains(ModelElement.FIRE)){
+    if (squareState.stream().anyMatch(element -> element instanceof Fire)){
       return ViewElement.FIRE;
     }
     return ViewElement.EMPTY;

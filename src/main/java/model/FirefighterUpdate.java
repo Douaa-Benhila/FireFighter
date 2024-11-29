@@ -5,9 +5,9 @@ import util.Position;
 import java.util.List;
 
 public class FirefighterUpdate implements Update{
-    private model.TargetStrategy targetStrategy=new model.TargetStrategy();
+    private model.TargetStrategy targetStrategy;
 
-    public FirefighterUpdate() {}
+    public FirefighterUpdate() {targetStrategy = new model.TargetStrategy();}
 
     @Override
     public void influence(BoardElement element) {

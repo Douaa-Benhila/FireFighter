@@ -5,16 +5,18 @@ import util.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Firefighter implements BoardElement, PositionControl{
+public class Firefighter implements BoardElement{
     private List<Position> positions;
+    private FirefighterBoard firefighterBoard;
     private Update update;
     private final model.TargetStrategy targetStrategy = new model.TargetStrategy();
 
-    public Firefighter(Update update, int initialFirefighterCount) {
+    public Firefighter(Update update, int initialFirefighterCount, FirefighterBoard firefighterBoard) {
         positions = new ArrayList<>();
         for (int index = 0; index < initialFirefighterCount; index++)
-            positions.add(positions.get(index).randomPosition());
+            positions.add(firefighterBoard.randomPosition());
 
+        this.firefighterBoard = firefighterBoard;
         this.update = update;
     }
 
@@ -25,14 +27,14 @@ public class Firefighter implements BoardElement, PositionControl{
 
     @Override
     public void update() {
-        for (Position firefighterPosition : positions) {
-            Position newFirefighterPosition =
-                    targetStrategy.neighborClosestToFire(firefighterPosition,
-                            positions, firefighterPosition.getNeighbors());
+        List<Position> currentPositions = new ArrayList<>(positions);
+        for (Position firefighterPosition : currentPositions) {
+            Position newFirefighterPosition = targetStrategy.neighborClosestToFire(firefighterPosition,
+                    Fire.getFirePositions(), firefighterBoard.getNeighbors());
             extinguish(newFirefighterPosition);
             positions.add(newFirefighterPosition);
-            List<Position> neighborFirePositions = newFirefighterPosition.getNeighbors().get(newFirefighterPosition).stream()
-                    .filter(positions::contains).toList();
+            List<Position> neighborFirePositions = firefighterBoard.getNeighbors().get(newFirefighterPosition).stream()
+                    .filter(Fire.getFirePositions()::contains).toList();
             for (Position firePosition : neighborFirePositions)
                 extinguish(firePosition);
             positions.addAll(neighborFirePositions);
@@ -40,18 +42,10 @@ public class Firefighter implements BoardElement, PositionControl{
     }
 
     private void extinguish(Position position) {
-        positions.remove(position);
+        Fire.getFirePositions().remove(position);
     }
 
     public Update getUpdate() {return update;}
 
-    @Override
-    public void deletePosition(Position position) {
-        positions.remove(position);
-    }
 
-    @Override
-    public void addPosition(Position position) {
-        positions.add(position);
-    }
 }
