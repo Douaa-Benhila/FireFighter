@@ -20,8 +20,15 @@ public class FireUpdate implements Update{
         }
 
         element.getPosition().addAll(newFirePositions.stream()
-                .filter(pos -> !Fire.getFirePositions().contains(pos))
+                .filter(pos -> !getFirePositions().contains(pos))
                 .toList());
+    }
+
+    private List<Position> getFirePositions(){
+        for (BoardElement element:firefighterBoard.getElements()){
+            if(element instanceof Fire) return element.getPosition();
+        }
+        return null;
     }
 
 }

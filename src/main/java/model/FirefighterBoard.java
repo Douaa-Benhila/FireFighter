@@ -53,6 +53,7 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
   }
 
   public int getStep(){return this.step;}
+  public List<BoardElement> getElements(){return this.elements;}
 
   @Override
   public int rowCount() {
@@ -89,7 +90,11 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
   }
 
   private boolean isGameOver(){
-    if (Fire.getFirePositions().isEmpty()) return true;
+    for (BoardElement element : elements){
+      if(element instanceof Fire){
+        if (element.getPosition().isEmpty()) return true;
+      }
+    }
     return false;
   }
 

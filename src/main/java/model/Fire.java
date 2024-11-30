@@ -24,7 +24,7 @@ public class Fire implements BoardElement {
     public List<Position> getPosition() {
         return positions;
     }
-    public static List<Position> getFirePositions() {return positions;}
+
     @Override
     public void update() {
         if (firefighterBoard.getStep() % 2 == 0) {

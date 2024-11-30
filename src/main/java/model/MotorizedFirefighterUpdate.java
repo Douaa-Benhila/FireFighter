@@ -20,7 +20,7 @@ public class MotorizedFirefighterUpdate implements Update{
         for (Position firefighterPosition : element.getPosition()) {
             Position newFirefighterPosition = targetStrategy.neighborClosestToFire(
                     firefighterPosition,
-                    Fire.getFirePositions(),
+                    getFirePositions(),
                     firefighterBoard.getNeighbors()
             );
 
@@ -31,7 +31,7 @@ public class MotorizedFirefighterUpdate implements Update{
             List<Position> neighborFirePositions = firefighterBoard.getNeighbors()
                     .get(newFirefighterPosition)
                     .stream()
-                    .filter(Fire.getFirePositions()::contains)
+                    .filter(getFirePositions()::contains)
                     .toList();
             for (Position firePosition : neighborFirePositions) {
                 extinguish(firePosition);
@@ -42,7 +42,14 @@ public class MotorizedFirefighterUpdate implements Update{
         element.getPosition().addAll(firefighterNewPositions);
     }
 
+    private List<Position> getFirePositions(){
+        for (BoardElement element:firefighterBoard.getElements()){
+            if(element instanceof Fire) return element.getPosition();
+        }
+        return null;
+    }
+
     private void extinguish(Position position) {
-        Fire.getFirePositions().remove(position);
+        getFirePositions().remove(position);
     }
 }

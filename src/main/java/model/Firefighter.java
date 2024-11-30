@@ -30,11 +30,11 @@ public class Firefighter implements BoardElement{
         List<Position> firefighterNewPositions = new ArrayList<>();
         for (Position firefighterPosition : positions) {
             Position newFirefighterPosition = targetStrategy.neighborClosestToFire(firefighterPosition,
-                    Fire.getFirePositions(), firefighterBoard.getNeighbors());
+                    getFirePositions(), firefighterBoard.getNeighbors());
             firefighterNewPositions.add(newFirefighterPosition);
             extinguish(newFirefighterPosition);
             List<Position> neighborFirePositions = firefighterBoard.getNeighbors().get(newFirefighterPosition).stream()
-                    .filter(Fire.getFirePositions()::contains).toList();
+                    .filter(getFirePositions()::contains).toList();
             for (Position firePosition : neighborFirePositions)
                 extinguish(firePosition);
         }
@@ -42,8 +42,15 @@ public class Firefighter implements BoardElement{
         positions.addAll(firefighterNewPositions);
     }
 
+    private List<Position> getFirePositions(){
+        for (BoardElement element:firefighterBoard.getElements()){
+            if(element instanceof Fire) return element.getPosition();
+        }
+        return null;
+    }
+
     private void extinguish(Position position) {
-        Fire.getFirePositions().remove(position);
+        getFirePositions().remove(position);
     }
 
     public Update getUpdate() {return update;}
