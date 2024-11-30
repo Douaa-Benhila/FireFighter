@@ -19,7 +19,7 @@ public class FirefighterFactory implements BoardElementFactory{
     }
 
     @Override
-    public BoardElement createElements(int rowCount, int columnCount) {
+    public BoardElement createElements() {
         return new Firefighter(update, initialNumber,firefighterBoard);
     }
 }

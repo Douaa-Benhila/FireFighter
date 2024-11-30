@@ -16,6 +16,6 @@ public class FireFactory implements BoardElementFactory{
     @Override
     public int getInitialNumber() {return initialNumber;}
     @Override
-    public BoardElement createElements(int rowCount, int columnCount) {return new Fire(initialNumber,update,firefighterBoard);}
+    public BoardElement createElements() {return new Fire(initialNumber,update,firefighterBoard);}
 }
 

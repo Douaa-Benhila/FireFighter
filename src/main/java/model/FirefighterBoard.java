@@ -43,7 +43,7 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
   @Override
   public void initializeElements() {
     for(BoardElementFactory factory : elementFactories){
-      this.elements.add(factory.createElements(this.rowCount, this.columnCount));
+      this.elements.add(factory.createElements());
     }
   }
 
