@@ -72,6 +72,10 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
             .forEach(BoardElement::update);
 
     elements.stream()
+            .filter(element -> element instanceof MotorizedFirefighter)
+            .forEach(BoardElement::update);
+
+    elements.stream()
             .filter(element -> element instanceof Fire)
             .forEach(BoardElement::update);
 
