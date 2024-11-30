@@ -66,6 +66,7 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
 
   @Override
   public List<util.Position> updateToNextGeneration() {
+    if (isGameOver()) return new ArrayList<>();
     List<util.Position> result = new ArrayList<>();
     elements.stream()
             .filter(element -> element instanceof Firefighter)
@@ -85,6 +86,11 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
     }
     step++;
     return result;
+  }
+
+  private boolean isGameOver(){
+    if (Fire.getFirePositions().isEmpty()) return true;
+    return false;
   }
 
   @Override
