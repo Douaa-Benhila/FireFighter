@@ -84,6 +84,9 @@ public class Controller {
     if(squareState.stream().anyMatch(element -> element instanceof Firefighter)){
       return ViewElement.FIREFIGHTER;
     }
+    if (squareState.stream().anyMatch(element -> element instanceof MotorizedFirefighter)){
+      return ViewElement.MOTORIZEDFIREFIGHTER;
+    }
     if (squareState.stream().anyMatch(element -> element instanceof Fire)){
       return ViewElement.FIRE;
     }
@@ -123,9 +126,9 @@ public class Controller {
   }
 
   public void initialize(int squareWidth, int squareHeight, int columnCount,
-                                int rowCount, int initialFireCount, int initialFirefighterCount) {
+                                int rowCount, int initialFireCount, int initialFirefighterCount, int initialMotorizedFirefighterCount) {
     grid.setDimensions(columnCount, rowCount, squareWidth, squareHeight);
-    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount));
+    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount, initialMotorizedFirefighterCount));
     repaintGrid();
   }
 
