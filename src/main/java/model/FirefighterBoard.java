@@ -74,6 +74,11 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
   public List<util.Position> updateToNextGeneration() {
     if (isGameOver()) return new ArrayList<>();
     List<util.Position> result = new ArrayList<>();
+
+    elements.stream()
+            .filter(element -> element instanceof Mountain)
+            .forEach(BoardElement::update);
+
     elements.stream()
             .filter(element -> element instanceof Firefighter)
             .forEach(BoardElement::update);

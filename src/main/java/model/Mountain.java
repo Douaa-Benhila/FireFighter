@@ -29,7 +29,7 @@ public class Mountain implements MotionlessElement{
     }
 
     @Override
-    public void update() {}
+    public void update() {impact();}
 
     @Override
     public Update getUpdate() {
