@@ -134,9 +134,9 @@ public class Controller {
   }
 
   public void initialize(int squareWidth, int squareHeight, int columnCount,
-                                int rowCount, int initialFireCount, int initialFirefighterCount, int initialMotorizedFirefighterCount, int initialMountainCount, int initialRockeryCount) {
+                                int rowCount, int initialFireCount, int initialFirefighterCount, int initialMotorizedFirefighterCount, int initialMountainCount, int initialRockeryCount , int initialCloudCount) {
     grid.setDimensions(columnCount, rowCount, squareWidth, squareHeight);
-    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount, initialMotorizedFirefighterCount, initialMountainCount, initialRockeryCount));
+    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount, initialMotorizedFirefighterCount, initialMountainCount, initialRockeryCount , initialCloudCount));
     repaintGrid();
   }
 
