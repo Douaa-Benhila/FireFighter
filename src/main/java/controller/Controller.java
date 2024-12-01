@@ -97,7 +97,12 @@ public class Controller {
       return ViewElement.FIRE;
     }
     if (squareState.stream().anyMatch(element -> element instanceof Cloud)){
-      return ViewElement.CLOUD;}
+      return ViewElement.CLOUD;
+    }
+    if (squareState.stream().anyMatch(element -> element instanceof Road)){
+      return ViewElement.ROAD;
+    }
+
     return ViewElement.EMPTY;
   }
 
@@ -134,9 +139,9 @@ public class Controller {
   }
 
   public void initialize(int squareWidth, int squareHeight, int columnCount,
-                                int rowCount, int initialFireCount, int initialFirefighterCount, int initialMotorizedFirefighterCount, int initialMountainCount, int initialRockeryCount , int initialCloudCount) {
+                                int rowCount, int initialFireCount, int initialFirefighterCount, int initialMotorizedFirefighterCount, int initialMountainCount, int initialRockeryCount , int initialCloudCount , int initialRoadCount) {
     grid.setDimensions(columnCount, rowCount, squareWidth, squareHeight);
-    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount, initialMotorizedFirefighterCount, initialMountainCount, initialRockeryCount , initialCloudCount));
+    this.setModel(new FirefighterBoard(columnCount, rowCount, initialFireCount, initialFirefighterCount, initialMotorizedFirefighterCount, initialMountainCount, initialRockeryCount , initialCloudCount,initialRoadCount));
     repaintGrid();
   }
 
