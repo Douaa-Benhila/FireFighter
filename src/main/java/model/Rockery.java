@@ -10,9 +10,9 @@ public class Rockery implements MotionlessElement{
     private FirefighterBoard firefighterBoard;
     private Impact impact;
 
-    public Rockery(Impact impact, int initialMountainCount, FirefighterBoard firefighterBoard) {
+    public Rockery(Impact impact, int initialRockeryCount, FirefighterBoard firefighterBoard) {
         positions = new ArrayList<>();
-        for (int index = 0; index < initialMountainCount; index++)
+        for (int index = 0; index < initialRockeryCount; index++)
             positions.add(firefighterBoard.randomPosition());
         this.firefighterBoard = firefighterBoard;
         this.impact = impact;
