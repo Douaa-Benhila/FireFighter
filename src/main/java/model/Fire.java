@@ -27,13 +27,17 @@ public class Fire implements BoardElement {
 
     @Override
     public void update() {
-        if (firefighterBoard.getStep() % 2 == 0) {
+        int adjustedStep = firefighterBoard.getStep() + 1;
+        if (adjustedStep% 2 == 0) {
             update.influence(this);
 
         }
 
 
     }
+
+
+
 
     @Override
     public Update getUpdate() {
