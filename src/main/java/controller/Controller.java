@@ -96,6 +96,8 @@ public class Controller {
     if (squareState.stream().anyMatch(element -> element instanceof Fire)){
       return ViewElement.FIRE;
     }
+    if (squareState.stream().anyMatch(element -> element instanceof Cloud)){
+      return ViewElement.CLOUD;}
     return ViewElement.EMPTY;
   }
 
