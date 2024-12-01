@@ -15,7 +15,7 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
   private int step = 0;
   private final Random randomGenerator = new Random();
 
-  public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount, int initialMotorizedFirefighterCount, int initialMountainCount) {
+  public FirefighterBoard(int columnCount, int rowCount, int initialFireCount, int initialFirefighterCount, int initialMotorizedFirefighterCount, int initialMountainCount, int initialRockeryCount) {
     this.columnCount = columnCount;
     this.rowCount = rowCount;
     this.positions = new util.Position[rowCount][columnCount];
@@ -37,6 +37,9 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
 
     //  IMPORTANT : MountainFactory needs to be the first element to be added in the list "elementFactories"
     elementFactories.add(new MountainFactory(initialMountainCount, new MountainImpact(this), this));
+
+    //  Motionless elements needs to be added after MountainFactory
+    elementFactories.add(new RockeryFactory(initialRockeryCount, new RockeryImpact(this), this));
 
     elementFactories.add(new FireFactory(initialFireCount, new FireUpdate(this), this));
     elementFactories.add(new FirefighterFactory(initialFirefighterCount, new FirefighterUpdate(), this));
@@ -89,6 +92,10 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
 
     elements.stream()
             .filter(element -> element instanceof Fire)
+            .forEach(BoardElement::update);
+
+    elements.stream()
+            .filter(element -> element instanceof Rockery)
             .forEach(BoardElement::update);
 
     for (BoardElement element:elements){
