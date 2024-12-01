@@ -26,7 +26,6 @@ public class Cloud implements BoardElement {
     @Override
     public void update() {
         update.influence(this);
-        update.influence(this);
     }
 
     @Override
