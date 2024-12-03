@@ -21,10 +21,10 @@ public class RoadImpact implements Impact {
             List<Position> toRemove = new ArrayList<>();
             for (Position neighbor : neighbors) {
                 List<BoardElement> elements = firefighterBoard.getState(neighbor);
-                boolean isBlocked = false;
+                boolean isBlocked = true;
                 for (BoardElement element : elements) {
                     if (element instanceof Firefighter || element instanceof MotorizedFirefighter) {
-                        isBlocked = true;
+                        isBlocked = false;
                         break;
                     }
                 }
