@@ -85,9 +85,6 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
             .filter(element -> element instanceof Mountain)
             .forEach(BoardElement::update);
 
-    elements.stream()
-            .filter(element -> element instanceof Road)
-            .forEach(BoardElement::update);
 
     elements.stream()
             .filter(element -> element instanceof Firefighter)
@@ -107,6 +104,11 @@ public class FirefighterBoard implements BoardState,BoardUpdate,BoardInitialisat
 
     elements.stream()
             .filter(element -> element instanceof Rockery)
+            .forEach(BoardElement::update);
+
+    // Road needs to be the last element added to the list
+    elements.stream()
+            .filter(element -> element instanceof Road)
             .forEach(BoardElement::update);
 
     for (BoardElement element:elements){
