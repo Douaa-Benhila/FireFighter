@@ -18,11 +18,11 @@ public class SimulatorApplication extends javafx.application.Application {
   private static final int BOX_WIDTH = 50;
   private static final int BOX_HEIGHT = 50;
   public static final int INITIAL_FIRE_COUNT = 10;
-  public static final int INITIAL_FIREFIGHTER_COUNT = 2;
-  public static final int INITIAL_MOTORIZED_FIREFIGHTER_COUNT = 1;
-  public static final int INITIAL_MOUNTAIN_COUNT = 8;
-  public static final int INITIAL_ROCKERY_COUNT = 6;
-  public static final int INITIAL_CLOUD_Count = 3;
+  public static final int INITIAL_FIREFIGHTER_COUNT = 7;
+  public static final int INITIAL_MOTORIZED_FIREFIGHTER_COUNT = 4;
+  public static final int INITIAL_MOUNTAIN_COUNT = 5;
+  public static final int INITIAL_ROCKERY_COUNT = 1;
+  public static final int INITIAL_CLOUD_Count = 5;
   public static final int INITIAL_ROAD_COUNT=7;
 
   private Stage primaryStage;
