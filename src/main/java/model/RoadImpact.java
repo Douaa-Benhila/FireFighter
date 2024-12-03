@@ -4,6 +4,8 @@ import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class RoadImpact implements Impact {
     private FirefighterBoard firefighterBoard;
@@ -14,25 +16,15 @@ public class RoadImpact implements Impact {
 
     @Override
     public void impact() {
+        for (Position roadPosition : getRoadPositions()) {
+            List<BoardElement> elements = firefighterBoard.getState(roadPosition);
 
-        List<Position> roadPositions = getRoadPositions();
-        for (Position roadPosition : roadPositions) {
-            List<Position> neighbors = firefighterBoard.getNeighbors().get(roadPosition);
-            List<Position> toRemove = new ArrayList<>();
-            for (Position neighbor : neighbors) {
-                List<BoardElement> elements = firefighterBoard.getState(neighbor);
-                boolean isBlocked = true;
-                for (BoardElement element : elements) {
-                    if (element instanceof Firefighter || element instanceof MotorizedFirefighter) {
-                        isBlocked = false;
-                        break;
-                    }
-                }
-                if (isBlocked) {
-                    toRemove.add(neighbor);
+            for(BoardElement element : elements) {
+                if (!(element instanceof Firefighter || element instanceof MotorizedFirefighter || element instanceof Road)) {
+                    element.getPosition().remove(roadPosition);
                 }
             }
-            neighbors.removeAll(toRemove);
+
         }
     }
 
