@@ -1,11 +1,13 @@
-package model;
+package Movable;
 
+import model.BoardElement;
+import model.FirefighterBoard;
 import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CloudUpdate implements Update  {
+public class CloudUpdate implements Update {
     private model.TargetStrategy targetStrategy;
     private FirefighterBoard firefighterBoard;
 

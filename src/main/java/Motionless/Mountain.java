@@ -1,11 +1,13 @@
-package model;
+package Motionless;
 
+import model.FirefighterBoard;
+import Movable.Update;
 import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mountain implements MotionlessElement{
+public class Mountain implements MotionlessElement {
     private List<Position> positions;
     private FirefighterBoard firefighterBoard;
     private Impact impact;

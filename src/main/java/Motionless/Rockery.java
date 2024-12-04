@@ -1,18 +1,20 @@
-package model;
+package Motionless;
 
+import model.FirefighterBoard;
+import Movable.Update;
 import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Road implements MotionlessElement{
+public class Rockery implements MotionlessElement {
     private List<Position> positions;
     private FirefighterBoard firefighterBoard;
     private Impact impact;
 
-    public Road (Impact impact, int initialMountainCount, FirefighterBoard firefighterBoard) {
+    public Rockery(Impact impact, int initialRockeryCount, FirefighterBoard firefighterBoard) {
         positions = new ArrayList<>();
-        for (int index = 0; index < initialMountainCount; index++)
+        for (int index = 0; index < initialRockeryCount; index++)
             positions.add(firefighterBoard.randomPosition());
         this.firefighterBoard = firefighterBoard;
         this.impact = impact;
@@ -24,18 +26,17 @@ public class Road implements MotionlessElement{
     }
 
     @Override
-    public void impact() {
-        impact.impact();
+    public void update() {
+        impact();
     }
-
-    @Override
-    public void update() {impact();}
 
     @Override
     public Update getUpdate() {
         return null;
     }
 
-    public Impact getImpact() {return impact;}
-
+    @Override
+    public void impact() {
+        impact.impact();
+    }
 }

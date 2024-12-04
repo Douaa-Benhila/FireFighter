@@ -1,5 +1,7 @@
 package model;
 
+import Movable.Fire;
+import Movable.FireUpdate;
 import org.junit.jupiter.api.Test;
 import util.Position;
 

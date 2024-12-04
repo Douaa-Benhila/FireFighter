@@ -1,5 +1,7 @@
 package model;
 
+import Motionless.*;
+import Movable.*;
 import util.Position;
 
 import java.util.*;

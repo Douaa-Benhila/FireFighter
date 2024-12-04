@@ -1,5 +1,7 @@
-package model;
+package Movable;
 
+import model.BoardElement;
+import model.FirefighterBoard;
 import util.Position;
 
 import java.util.ArrayList;

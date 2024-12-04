@@ -1,5 +1,7 @@
 package model;
 
+import Movable.Fire;
+import Movable.Update;
 import util.Position;
 
 import java.util.ArrayList;

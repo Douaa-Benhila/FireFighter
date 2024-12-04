@@ -1,6 +1,10 @@
-package model;
+package Motionless;
 
-public class RockeryFactory implements BoardElementFactory{
+import model.BoardElement;
+import model.BoardElementFactory;
+import model.FirefighterBoard;
+
+public class RockeryFactory implements BoardElementFactory {
     private int initialNumber;
     private Impact impact;
     private FirefighterBoard firefighterBoard;

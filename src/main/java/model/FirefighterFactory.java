@@ -1,6 +1,6 @@
 package model;
 
-import java.util.List;
+import Movable.Update;
 
 public class FirefighterFactory implements BoardElementFactory{
     private int initialNumber;

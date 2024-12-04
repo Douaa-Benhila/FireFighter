@@ -1,10 +1,13 @@
-package model;
+package Motionless;
 
+import model.BoardElement;
+import Movable.Fire;
+import model.FirefighterBoard;
 import util.Position;
 
 import java.util.*;
 
-public class RockeryImpact implements Impact{
+public class RockeryImpact implements Impact {
     private FirefighterBoard firefighterBoard;
     private Map<Position, Integer> fireCounters;
 

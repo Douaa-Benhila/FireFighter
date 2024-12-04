@@ -1,5 +1,11 @@
 package controller;
 
+import Motionless.Mountain;
+import Motionless.Road;
+import Motionless.Rockery;
+import Movable.Cloud;
+import Movable.Fire;
+import Movable.MotorizedFirefighter;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

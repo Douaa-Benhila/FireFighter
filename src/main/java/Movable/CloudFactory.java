@@ -1,6 +1,10 @@
-package model;
+package Movable;
 
-public class CloudFactory implements BoardElementFactory{
+import model.BoardElement;
+import model.BoardElementFactory;
+import model.FirefighterBoard;
+
+public class CloudFactory implements BoardElementFactory {
     private int initialNumber;
     private FirefighterBoard firefighterBoard;
     private Update update;

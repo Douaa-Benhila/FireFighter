@@ -1,10 +1,8 @@
 package model;
 
-import util.Position;
+import Movable.Update;
 
-import java.util.List;
-
-public class FirefighterUpdate implements Update{
+public class FirefighterUpdate implements Update {
     private model.TargetStrategy targetStrategy;
 
     public FirefighterUpdate() {targetStrategy = new model.TargetStrategy();}

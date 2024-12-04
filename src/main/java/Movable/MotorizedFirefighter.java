@@ -1,11 +1,13 @@
-package model;
+package Movable;
 
+import model.BoardElement;
+import model.FirefighterBoard;
 import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MotorizedFirefighter implements BoardElement{
+public class MotorizedFirefighter implements BoardElement {
     private List<Position> positions;
     private FirefighterBoard firefighterBoard;
     private Update update;

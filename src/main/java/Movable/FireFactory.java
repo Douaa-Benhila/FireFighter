@@ -1,8 +1,10 @@
-package model;
+package Movable;
 
-import java.util.List;
+import model.BoardElement;
+import model.BoardElementFactory;
+import model.FirefighterBoard;
 
-public class FireFactory implements BoardElementFactory{
+public class FireFactory implements BoardElementFactory {
     private int initialNumber;
     private Update update;
     private FirefighterBoard firefighterBoard;

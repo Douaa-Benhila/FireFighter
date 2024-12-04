@@ -1,13 +1,14 @@
-package model;
+package Movable;
 
+import model.BoardElement;
+import model.FirefighterBoard;
 import util.Position;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class FireUpdate implements Update{
+public class FireUpdate implements Update {
     private FirefighterBoard firefighterBoard;
     public FireUpdate(FirefighterBoard firefighterBoard){
         this.firefighterBoard = firefighterBoard;

@@ -1,17 +1,18 @@
-package model;
+package Motionless;
 
-public class MountainFactory implements BoardElementFactory{
+import model.BoardElement;
+import model.BoardElementFactory;
+import model.FirefighterBoard;
+
+public class RoadFactory implements BoardElementFactory {
     private int initialNumber;
     private Impact impact;
     private FirefighterBoard firefighterBoard;
-
-    public MountainFactory(int initialNumber, Impact impact, FirefighterBoard firefighterBoard) {
+    public RoadFactory(int initialNumber, Impact impact, FirefighterBoard firefighterBoard) {
         this.initialNumber = initialNumber;
         this.impact = impact;
         this.firefighterBoard = firefighterBoard;
     }
-
-
     @Override
     public int getInitialNumber() {
         return initialNumber;
@@ -19,6 +20,7 @@ public class MountainFactory implements BoardElementFactory{
 
     @Override
     public BoardElement createElements() {
-        return new Mountain(impact, initialNumber, firefighterBoard);
+        return new Road(impact, initialNumber, firefighterBoard);
     }
+
 }

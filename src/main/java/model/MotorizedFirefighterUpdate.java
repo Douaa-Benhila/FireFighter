@@ -1,11 +1,13 @@
 package model;
 
+import Movable.Fire;
+import Movable.Update;
 import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MotorizedFirefighterUpdate implements Update{
+public class MotorizedFirefighterUpdate implements Update {
     private model.TargetStrategy targetStrategy;
     private FirefighterBoard firefighterBoard;
 

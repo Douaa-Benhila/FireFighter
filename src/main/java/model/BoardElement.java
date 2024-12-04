@@ -1,5 +1,7 @@
 package model;
 
+import Movable.Update;
+
 import java.util.*;
 
 public interface BoardElement {

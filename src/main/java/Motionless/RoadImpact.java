@@ -1,11 +1,11 @@
-package model;
+package Motionless;
 
+import Movable.MotorizedFirefighter;
+import model.*;
 import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class RoadImpact implements Impact {
     private FirefighterBoard firefighterBoard;

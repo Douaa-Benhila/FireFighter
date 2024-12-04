@@ -1,5 +1,7 @@
-package model;
+package Movable;
 
+import model.BoardElement;
+import model.FirefighterBoard;
 import util.Position;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.Objects;
 public class Fire implements BoardElement {
     private static List<Position> positions;
     private Update update;
-    private FirefighterBoard  firefighterBoard;
+    private FirefighterBoard firefighterBoard;
 
     public Fire(int initialFireCount, Update update , FirefighterBoard firefighterBoard) {
         positions = new ArrayList<>();

@@ -1,5 +1,6 @@
-package model;
+package Motionless;
 
+import model.BoardElement;
 import util.Position;
 
 import java.util.List;

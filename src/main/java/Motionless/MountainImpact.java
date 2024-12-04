@@ -1,11 +1,13 @@
-package model;
+package Motionless;
 
+import model.BoardElement;
+import model.FirefighterBoard;
 import util.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MountainImpact implements Impact{
+public class MountainImpact implements Impact {
     private FirefighterBoard firefighterBoard;
 
     public MountainImpact(FirefighterBoard firefighterBoard) {
