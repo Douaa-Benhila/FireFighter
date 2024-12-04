@@ -4,7 +4,7 @@
 -Le but de ce projet : implémenter un proto-simulateur d'automate cellulaire.
 -Ce que fait le projet : j'ai une grille ou  les éléments seront des pompiers et des feux. A chaque tour, chaque pompier éteindra soit tous les feux autour de lui soit se dirigera vers le feu le plus proche et éteindra ensuite le feu
 autour de lui. Le feu de son côté s'étendra autour de lui tous les deux tours. 
--Code couleur de la grille : cloud(purple), MotorizedFireFighter(orange),Mountain(Green),Road(Black),ROCKERY(DARKGREY),FIREFIGHTER(BLEU),FIRE(rouge).
+-Code couleur de la grille : cloud(purple), MotorizedFireFighter(orange),Mountain(DARKGREY),Road(Black),ROCKERY(Green),FIREFIGHTER(BLEU),FIRE(rouge).
 -Remarque:"nous sommes  au courant que la couleur de nuage doit etre  Light Grey (d'apres ce que vous avez dit en tp ) mais nous l'avons changer pour raisons d'affichage vu que la couleur ressembler au couleur des montagnes"
 -Taches suivi afin de realiser ce projet:
 
@@ -41,11 +41,11 @@ tache 2:
             cette fonction change d'un element a un autre vu que chaque elements a sa propre fonctionnalité.
                 mes motionelless elements (obstacles ) sont :
                 Mountain/MountainFactory/MountainImpact: Des cases montagnes qui en sont pas franchissable par le feu ni par les pompiers.
-                                                         Couleur dans la grille : GREEN.
+                                                         Couleur dans la grille : DARKGREY.
                 Road/RoadFactory/RoadImpact: Des cases routes qui ne sont franchissables que par les pompiers.
                                              Couleur dans la grille : BLACK.
                 ROCKERY/ROCKERYFACTORY/ROCKERYIMPACT: Des cases rocailles sur lesquelles le feu mets quatre tours à se propager.
-                                                        Couleur dans la grille : DARKGREY.
+                                                        Couleur dans la grille : GREEN.
 
 
 INFORMATIONS SUR AUTRE ELEMENTS DE MON BOARD:
