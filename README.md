@@ -61,5 +61,4 @@ Exemples :
 - **Grille vide** (`EmptyCell`) : cases neutres, utilisées pour les déplacements possibles.
 - **Zone neutre** : terrain sans interaction, ni feu ni mouvement spécifique.
 
-> Ces composants peuvent être utilisés pour améliorer la lisibilité de la simulation ou ajouter une couche de complexité future.
 
