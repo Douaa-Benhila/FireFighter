@@ -54,12 +54,4 @@ void impact();
 - `Fire` / `FireImpact` / `FireFactory`
 - `FireFighter` / `FireFighterImpact` / `FireFighterFactory`
 
-###  Composants Stables
-Ces éléments sont **passifs** : ils ne bougent pas, n'interagissent pas directement avec leur environnement, mais participent à la structure de la simulation. Leur comportement est constant et ils servent souvent de base ou de sol.
-
-Exemples :
-- **Grille vide** (`EmptyCell`) : cases neutres, utilisées pour les déplacements possibles.
-- **Zone neutre** : terrain sans interaction, ni feu ni mouvement spécifique.
-
-> Ces composants peuvent être utilisés pour améliorer la lisibilité de la simulation ou ajouter une couche de complexité future.
 
